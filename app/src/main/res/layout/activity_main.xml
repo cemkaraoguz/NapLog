@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvNapStartInfo"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:paddingLeft="64dp"
+        android:paddingTop="50dp"
+        android:text="NapStartInfo"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivNapState"
+        android:layout_width="275dp"
+        android:layout_height="275dp"
+        android:adjustViewBounds="false"
+        android:clickable="true"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/tvNapStopInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNapStartInfo"
+        app:srcCompat="@mipmap/naplog_awake4_foreground" />
+
+    <TextView
+        android:id="@+id/tvNapStopInfo"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:gravity="right"
+        android:paddingTop="32dp"
+        android:paddingRight="64dp"
+        android:paddingBottom="0dp"
+        android:text="NapStopInfo"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/ivAdd"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="btnAdd"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@drawable/add" />
+
+        <ImageView
+            android:id="@+id/ivDatabase"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="btnShow"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@drawable/database" />
+
+        <ImageView
+            android:id="@+id/ivSettings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@drawable/settings" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
