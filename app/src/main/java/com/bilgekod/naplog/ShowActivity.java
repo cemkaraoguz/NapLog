@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class ShowActivity extends AppCompatActivity implements DailyNapAdapter.I
     //RecyclerView.Adapter adapter;
     DailyNapAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    Button btChangeDisplay;
 
     static final int LAUNCH_SHOWDETAILS_ACTIVITY = 1;
 
@@ -28,6 +31,27 @@ public class ShowActivity extends AppCompatActivity implements DailyNapAdapter.I
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
+
+        btChangeDisplay = findViewById(R.id.btChangeDisplay);
+        btChangeDisplay.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                boolean doShowDurations = adapter.getDoShowDurations();
+                if(doShowDurations)
+                {
+                    btChangeDisplay.setText("SHOW DURATIONS");
+                }
+                else
+                {
+                    btChangeDisplay.setText("SHOW HOURS");
+                }
+
+                adapter.setDoShowDurations( !(doShowDurations && doShowDurations) );
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         NapDB db = new NapDB(this);
         db.open();

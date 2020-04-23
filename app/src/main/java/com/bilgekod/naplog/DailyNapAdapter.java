@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,11 +21,14 @@ public class DailyNapAdapter extends RecyclerView.Adapter<DailyNapAdapter.ViewHo
     private ArrayList<DailyNap> dailyNaps;
 
     ItemClicked activity;
+    Context context;
+    boolean doShowDurations = true;
 
     public DailyNapAdapter(Context context, ArrayList<DailyNap> list)
     {
         dailyNaps = list;
         activity = (ItemClicked) context;
+        this.context = context;
     }
 
     public void updateDailyNap(int index, DailyNap dailyNap)
@@ -112,12 +116,10 @@ public class DailyNapAdapter extends RecyclerView.Adapter<DailyNapAdapter.ViewHo
         try
         {
             //TODO colors
-            TimelineDrawable timelineDrawable = new TimelineDrawable(Color.CYAN,
-                    Color.RED,
-                    Color.WHITE,
-                    hourMin, hourMax, list_hours, list_durations);
+            TimelineDrawable timelineDrawable = new TimelineDrawable(ContextCompat.getColor(context, R.color.colorPrimary), ContextCompat.getColor(context, R.color.colorAccent),
+                    Color.WHITE, hourMin, hourMax, list_hours, list_durations);
 
-            //timelineDrawable.setDoShowDurations(doShowDurations);
+            timelineDrawable.setDoShowDurations(doShowDurations);
 
             //rectanglesDrawable.setAlpha(80);
 
@@ -133,5 +135,15 @@ public class DailyNapAdapter extends RecyclerView.Adapter<DailyNapAdapter.ViewHo
     public int getItemCount()
     {
         return dailyNaps.size();
+    }
+
+    public boolean getDoShowDurations()
+    {
+        return doShowDurations;
+    }
+
+    public void setDoShowDurations(boolean doShowDurations)
+    {
+        this.doShowDurations = doShowDurations;
     }
 }
