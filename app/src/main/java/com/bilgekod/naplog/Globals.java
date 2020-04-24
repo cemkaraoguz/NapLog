@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 public class Globals extends Application
 {
@@ -20,9 +21,11 @@ public class Globals extends Application
     public static final String DATE_SEPARATOR = "/";
     public static final String TIME_SEPARATOR = ":";
 
+    public static final String DEFAULT_USERID = "defaultuserid";
     public static final float DEFAULT_HOUR_STARTOFDAY = 0f;
     public static final float DEFAULT_HOUR_ENDOFDAY = 23f*60f+59f;
 
+    private static String userid;
     public static float hour_startofday;
     public static float hour_endofday;
 
@@ -39,7 +42,6 @@ public class Globals extends Application
     private static int stop_hour;
     private static int stop_minute;
     private static int stop_second;
-    // TODO encapsulate these in a nap?
 
     @Override
     public void onCreate()
@@ -62,6 +64,15 @@ public class Globals extends Application
         stop_second = prefs.getInt("stop_second", INT_NULL);
 
         // Parameters
+        userid = prefs.getString("userid", DEFAULT_USERID);
+        if(userid.equals(DEFAULT_USERID))
+        {
+            userid = UUID.randomUUID().toString();
+            SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(PREFS_FILENAME, MODE_PRIVATE).edit();
+            editor.putString("userid", userid);
+            editor.commit();
+        }
+
         hour_startofday = prefs.getFloat("hour_startofday", Globals.DEFAULT_HOUR_STARTOFDAY);
         hour_endofday = prefs.getFloat("hour_endofday", Globals.DEFAULT_HOUR_ENDOFDAY);
     }
@@ -209,7 +220,7 @@ public class Globals extends Application
 
     public static String getUserid()
     {
-        return "test"; // TODO : implement this
+        return userid;
     }
 
     public static void resetState(Context context)

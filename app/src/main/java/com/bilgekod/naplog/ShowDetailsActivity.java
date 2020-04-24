@@ -30,7 +30,15 @@ public class ShowDetailsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_details);
 
-        int index = getIntent().getIntExtra("index", -1); //TODO: check validity
+        int index = getIntent().getIntExtra("index", -1);
+        if(index<0)
+        {
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("errorMsg", "Index value invalid");
+            setResult(Globals.INTENT_RESULT_ERROR, returnIntent);
+            finish();
+        }
+
         list_nap = ShowActivity.list_daily_nap.get(index).getNapList();
 
         recyclerView = findViewById(R.id.detailednaplist);

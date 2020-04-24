@@ -244,6 +244,11 @@ public class Nap
         this.duration = ""+diffInMinute;
     }
 
+    public void setUserid(String userid)
+    {
+        this.userid = userid;
+    }
+
     public boolean isValid()
     {
         return Integer.parseInt(this.duration)>0 && Integer.parseInt(this.duration)<24*60;

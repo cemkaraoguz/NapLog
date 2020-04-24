@@ -48,7 +48,7 @@ public class TimelineDrawable extends Drawable
             throw new Exception("hourMax must be bigger than hourMin");
         }
 
-        this.list_hours = list_hours; //TODO check size equals
+        this.list_hours = list_hours;
         this.list_durations = list_durations;
 
         if(list_hours.size()!=list_durations.size())

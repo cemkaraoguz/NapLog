@@ -149,7 +149,7 @@ public class AddActivity extends AppCompatActivity
                         etHourStart.setText("");
                         etHourStop.setText("");
 
-                        AddActivity.this.finish(); //TODO : do this under condition that we come from state change
+                        AddActivity.this.finish();
                     }
                 }
             });

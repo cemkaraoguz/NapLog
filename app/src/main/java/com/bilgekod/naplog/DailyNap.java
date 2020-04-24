@@ -34,25 +34,34 @@ public class DailyNap
 
     public void mergeNap(Nap nap)
     {
+        boolean doMergeNap = true;
+
         if(userid==null)
         {
+            // if we do not have userid, we inherit from the nap
             userid = nap.getUserid();
         }
-        else
+        else if(!userid.equals(nap.getUserid()))
         {
-            // TODO: check if userids match
+            // if we have already userid, it has to be the same with that of the nap
+            doMergeNap = false;
         }
 
         if(dateStart==null)
         {
+            // if we do not have dateStart, we inherit from the nap
             dateStart = nap.getDateStart();
         }
-        else
+        else if(!dateStart.equals(nap.getDateStart()))
         {
-            // TODO: check if dates match
+            // if we have already dateStart, it has to be the same with that of the nap
+            doMergeNap = false;
         }
 
-        napList.add(nap);
-        totalNapDuration = totalNapDuration + Integer.parseInt(nap.getDuration());
+        if(doMergeNap)
+        {
+            napList.add(nap);
+            totalNapDuration = totalNapDuration + Integer.parseInt(nap.getDuration());
+        }
     }
 }
