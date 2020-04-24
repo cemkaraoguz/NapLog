@@ -48,15 +48,11 @@ public class MainActivity extends AppCompatActivity
                 updateNapStateInfo();
             }
         });
+    }
 
-        ivSettings.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                    //startActivity(new Intent(this, SettingsActivity.class));
-            }
-        });
+    public void btnSettings(View v)
+    {
+        startActivity(new Intent(this, SettingsActivity.class));
     }
 
     public void btnAdd(View v)

@@ -99,10 +99,6 @@ public class DailyNapAdapter extends RecyclerView.Adapter<DailyNapAdapter.ViewHo
         //holder.tvDailyInfo.setText("Total nap duration on " + dailyNaps.get(position).getDateStart() + " is " + duration + sMinutes);
         holder.tvDailyInfo.setText(dailyNaps.get(position).getDateStart());
 
-
-        float hourMin = 8*60f; // TODO to globals
-        float hourMax = 20*60f; // TODO to globals
-
         ArrayList<Nap> list_nap = dailyNaps.get(position).getNapList();
         ArrayList<Float> list_hours = new ArrayList<>();
         ArrayList<Float> list_durations = new ArrayList<>();
@@ -115,9 +111,9 @@ public class DailyNapAdapter extends RecyclerView.Adapter<DailyNapAdapter.ViewHo
 
         try
         {
-            //TODO colors
-            TimelineDrawable timelineDrawable = new TimelineDrawable(ContextCompat.getColor(context, R.color.colorPrimary), ContextCompat.getColor(context, R.color.colorAccent),
-                    Color.WHITE, hourMin, hourMax, list_hours, list_durations);
+            TimelineDrawable timelineDrawable = new TimelineDrawable(ContextCompat.getColor(context, R.color.colorPrimary),
+                    ContextCompat.getColor(context, R.color.colorAccent),
+                    Color.WHITE, Globals.hour_startofday, Globals.hour_endofday, list_hours, list_durations);
 
             timelineDrawable.setDoShowDurations(doShowDurations);
 
@@ -127,7 +123,7 @@ public class DailyNapAdapter extends RecyclerView.Adapter<DailyNapAdapter.ViewHo
         }
         catch(Exception e)
         {
-            //Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

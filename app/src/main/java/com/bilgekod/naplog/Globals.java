@@ -20,6 +20,12 @@ public class Globals extends Application
     public static final String DATE_SEPARATOR = "/";
     public static final String TIME_SEPARATOR = ":";
 
+    public static final float DEFAULT_HOUR_STARTOFDAY = 0f;
+    public static final float DEFAULT_HOUR_ENDOFDAY = 23f*60f+59f;
+
+    public static float hour_startofday;
+    public static float hour_endofday;
+
     private static int state;
     private static int start_year;
     private static int start_month;
@@ -54,6 +60,10 @@ public class Globals extends Application
         stop_hour = prefs.getInt("stop_hour", INT_NULL);
         stop_minute = prefs.getInt("stop_minute", INT_NULL);
         stop_second = prefs.getInt("stop_second", INT_NULL);
+
+        // Parameters
+        hour_startofday = prefs.getFloat("hour_startofday", Globals.DEFAULT_HOUR_STARTOFDAY);
+        hour_endofday = prefs.getFloat("hour_endofday", Globals.DEFAULT_HOUR_ENDOFDAY);
     }
 
     public static void changeState(Context context)
@@ -288,5 +298,23 @@ public class Globals extends Application
     public static int getStop_minute()
     {
         return stop_minute;
+    }
+
+    public static void setStartOfDay(Context context, float newtime)
+    {
+        hour_startofday = newtime;
+
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFS_FILENAME, MODE_PRIVATE).edit();
+        editor.putFloat("hour_startofday", hour_startofday);
+        editor.commit();
+    }
+
+    public static void setEndOfDay(Context context, float newtime)
+    {
+        hour_endofday = newtime;
+
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFS_FILENAME, MODE_PRIVATE).edit();
+        editor.putFloat("hour_endofday", hour_endofday);
+        editor.commit();
     }
 }

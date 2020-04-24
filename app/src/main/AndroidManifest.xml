@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/naplog_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowDetailsActivity"></activity>
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".ShowDetailsActivity" />
         <activity android:name=".UpdateActivity" />
         <activity android:name=".ShowActivity" />
         <activity android:name=".AddActivity" />
