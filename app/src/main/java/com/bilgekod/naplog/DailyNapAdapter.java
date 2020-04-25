@@ -90,14 +90,55 @@ public class DailyNapAdapter extends RecyclerView.Adapter<DailyNapAdapter.ViewHo
     public void onBindViewHolder(@NonNull DailyNapAdapter.ViewHolder holder, int position)
     {
         int duration = dailyNaps.get(position).getTotalNapDuration();
-        String sMinutes = " minute";
-        if(duration>1)
+        int duration_h = duration/60;
+        int duration_m = duration%60;
+        String duration_h_str = ""+duration_h;
+        String duration_m_str = ""+duration_m;
+        String hour_suffix;
+        String minute_suffix;
+        String duration_str;
+
+        /*
+        if(duration_h_str.length()==1)
         {
-            sMinutes = sMinutes + "s";
+            duration_h_str = "0"+duration_h_str;
         }
+
+        if(duration_m_str.length()==1)
+        {
+            duration_m_str = "0"+duration_m_str;
+        }
+         */
+
+        if(duration_h>1)
+        {
+            hour_suffix = "hours";
+        }
+        else
+        {
+            hour_suffix = "hour";
+        }
+
+        if(duration_m>1)
+        {
+            minute_suffix = "mins";
+        }
+        else
+        {
+            minute_suffix = "min";
+        }
+
+        if(duration_h>0)
+        {
+            duration_str = duration_h_str+" "+hour_suffix+" "+duration_m_str+" "+minute_suffix;
+        }
+        else
+        {
+            duration_str = duration_m_str+" "+minute_suffix;
+        }
+
         holder.itemView.setTag(dailyNaps.get(position));
-        //holder.tvDailyInfo.setText("Total nap duration on " + dailyNaps.get(position).getDateStart() + " is " + duration + sMinutes);
-        holder.tvDailyInfo.setText(dailyNaps.get(position).getDateStart());
+        holder.tvDailyInfo.setText(dailyNaps.get(position).getDateStart() + " : " + duration_str);
 
         ArrayList<Nap> list_nap = dailyNaps.get(position).getNapList();
         ArrayList<Float> list_hours = new ArrayList<>();
