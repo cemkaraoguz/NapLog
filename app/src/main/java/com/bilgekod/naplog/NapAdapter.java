@@ -72,15 +72,67 @@ public class NapAdapter extends RecyclerView.Adapter<NapAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull NapAdapter.ViewHolder holder, int position)
     {
+        int duration = Integer.parseInt( naps.get(position).getDuration() );
+        int duration_h = duration/60;
+        int duration_m = duration%60;
+        String duration_h_str = ""+duration_h;
+        String duration_m_str = ""+duration_m;
+        String hour_suffix;
+        String minute_suffix;
+        String duration_str;
+
+        /*
+        if(duration_h_str.length()==1)
+        {
+            duration_h_str = "0"+duration_h_str;
+        }
+
+        if(duration_m_str.length()==1)
+        {
+            duration_m_str = "0"+duration_m_str;
+        }
+         */
+
+        if(duration_h>1)
+        {
+            hour_suffix = "hours";
+        }
+        else
+        {
+            hour_suffix = "hour";
+        }
+
+        if(duration_m>1)
+        {
+            minute_suffix = "mins";
+        }
+        else
+        {
+            minute_suffix = "min";
+        }
+
+        if(duration_h>0)
+        {
+            duration_str = duration_h_str+" "+hour_suffix+" "+duration_m_str+" "+minute_suffix;
+        }
+        else
+        {
+            duration_str = duration_m_str+" "+minute_suffix;
+        }
+
+        /*
         int duration = Integer.parseInt(naps.get(position).getDuration());
         String sMinutes = " minute";
         if(duration>1)
         {
             sMinutes = sMinutes + "s";
         }
+
+         */
+
         holder.itemView.setTag(naps.get(position));
         holder.tvDate.setText(naps.get(position).getDateStart());
-        holder.tvTime.setText("Started at " + naps.get(position).getTimeStart() + " for " + duration + sMinutes);
+        holder.tvTime.setText("At " + naps.get(position).getTimeStart() + " for " + duration_str);
     }
 
     @Override
