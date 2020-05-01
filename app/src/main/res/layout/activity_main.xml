@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tvNapStartInfo"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
         android:paddingLeft="64dp"
-        android:paddingTop="50dp"
+        android:paddingTop="10dp"
         android:text="NapStartInfo"
         android:textColor="@color/colorPrimaryText"
         android:textSize="24sp"
@@ -21,8 +24,10 @@
 
     <ImageView
         android:id="@+id/ivNapState"
-        android:layout_width="275dp"
-        android:layout_height="275dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_weight="3"
         android:adjustViewBounds="false"
         android:clickable="true"
         android:cropToPadding="false"
@@ -35,12 +40,14 @@
 
     <TextView
         android:id="@+id/tvNapStopInfo"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:gravity="right"
-        android:paddingTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="right|center_vertical"
+        android:paddingTop="10dp"
         android:paddingRight="64dp"
         android:paddingBottom="0dp"
+        android:password="false"
         android:text="NapStopInfo"
         android:textColor="@color/colorPrimaryText"
         android:textSize="24sp"
@@ -48,46 +55,52 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/ivAdd"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:onClick="btnAdd"
-            android:tint="@color/colorAccent"
-            app:srcCompat="@drawable/add" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/ivDatabase"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:onClick="btnShow"
-            android:tint="@color/colorAccent"
-            app:srcCompat="@drawable/database" />
+            <ImageView
+                android:id="@+id/ivAdd"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="btnAdd"
+                android:tint="@color/colorAccent"
+                app:srcCompat="@drawable/add" />
 
-        <ImageView
-            android:id="@+id/ivSettings"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:onClick="btnSettings"
-            android:tint="@color/colorAccent"
-            app:srcCompat="@drawable/settings" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ivDatabase"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="btnShow"
+                android:tint="@color/colorAccent"
+                app:srcCompat="@drawable/database" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/ivSettings"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="btnSettings"
+                android:tint="@color/colorAccent"
+                app:srcCompat="@drawable/settings" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
