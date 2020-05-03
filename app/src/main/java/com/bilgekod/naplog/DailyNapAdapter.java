@@ -130,7 +130,14 @@ public class DailyNapAdapter extends RecyclerView.Adapter<DailyNapAdapter.ViewHo
 
         if(duration_h>0)
         {
-            duration_str = duration_h_str+" "+hour_suffix+" "+duration_m_str+" "+minute_suffix;
+            if(duration_m>0)
+            {
+                duration_str = duration_h_str+" "+hour_suffix+" "+duration_m_str+" "+minute_suffix;
+            }
+            else
+            {
+                duration_str = duration_h_str+" "+hour_suffix;
+            }
         }
         else
         {

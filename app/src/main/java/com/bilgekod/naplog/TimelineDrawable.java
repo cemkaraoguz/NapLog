@@ -115,7 +115,7 @@ public class TimelineDrawable extends Drawable
                 }
                 paint_text.setTextSize(textSize);
 
-                String hour_str = (int) (hour / 60) + "h";
+                String hour_str = "" + (int) (hour / 60);
                 String minute_str = "" + (int) (hour % 60);
                 if (minute_str.length() == 1)
                 {
@@ -133,11 +133,55 @@ public class TimelineDrawable extends Drawable
 
                 if(doShowDurations)
                 {
-                    canvas.drawText((int) (duration) + " mins", nap_left, text_y, paint_text);
+                    int duration_h = (int)(duration)/60;
+                    int duration_m = (int)(duration)%60;
+                    String duration_h_str = ""+duration_h;
+                    String duration_m_str = ""+duration_m;
+                    String hour_suffix = "h";
+                    String minute_suffix = "m";
+                    String duration_str;
+
+                    /*
+                    if(duration_h>1)
+                    {
+                        hour_suffix = "hours";
+                    }
+                    else
+                    {
+                        hour_suffix = "hour";
+                    }
+
+                    if(duration_m>1)
+                    {
+                        minute_suffix = "mins";
+                    }
+                    else
+                    {
+                        minute_suffix = "min";
+                    }
+                     */
+
+                    if(duration_h>0)
+                    {
+                        if(duration_m>0)
+                        {
+                            duration_str = duration_h_str+" "+hour_suffix+" "+duration_m_str+" "+minute_suffix;
+                        }
+                        else
+                        {
+                            duration_str = duration_h_str+" "+hour_suffix;
+                        }
+                    }
+                    else
+                    {
+                        duration_str = duration_m_str+" "+minute_suffix;
+                    }
+
+                    canvas.drawText(duration_str, nap_left, text_y, paint_text);
                 }
                 else
                 {
-                    canvas.drawText(hour_str + minute_str, nap_left, text_y, paint_text);
+                    canvas.drawText(hour_str + ":" + minute_str, nap_left, text_y, paint_text);
                 }
 
                 flagAboveBelow = flagAboveBelow * -1;

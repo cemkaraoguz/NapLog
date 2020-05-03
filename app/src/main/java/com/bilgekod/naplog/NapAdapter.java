@@ -113,22 +113,19 @@ public class NapAdapter extends RecyclerView.Adapter<NapAdapter.ViewHolder>
 
         if(duration_h>0)
         {
-            duration_str = duration_h_str+" "+hour_suffix+" "+duration_m_str+" "+minute_suffix;
+            if(duration_m>0)
+            {
+                duration_str = duration_h_str+" "+hour_suffix+" "+duration_m_str+" "+minute_suffix;
+            }
+            else
+            {
+                duration_str = duration_h_str+" "+hour_suffix;
+            }
         }
         else
         {
             duration_str = duration_m_str+" "+minute_suffix;
         }
-
-        /*
-        int duration = Integer.parseInt(naps.get(position).getDuration());
-        String sMinutes = " minute";
-        if(duration>1)
-        {
-            sMinutes = sMinutes + "s";
-        }
-
-         */
 
         holder.itemView.setTag(naps.get(position));
         holder.tvDate.setText(naps.get(position).getDateStart());
