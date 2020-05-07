@@ -23,5 +23,6 @@
         android:layout_margin="10dp"
         android:layout_weight="1"
         android:background="@drawable/buttons"
-        android:text="SHOW HOURS" />
+        android:text="SHOW HOURS"
+        android:textColor="#FFFFFF" />
 </LinearLayout>

@@ -1,6 +1,8 @@
 package com.bilgekod.naplog;
 
 import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
 
 public class Nap
 {
@@ -244,6 +246,20 @@ public class Nap
         this.duration = ""+diffInMinute;
     }
 
+    public Date getStartDate()
+    {
+        Calendar calendar1 = Calendar.getInstance();
+
+        calendar1.set(Integer.parseInt(this.date_start_year),
+                Integer.parseInt(this.date_start_month),
+                Integer.parseInt(this.date_start_day),
+                Integer.parseInt(this.time_start_hour),
+                Integer.parseInt(this.time_start_minute),
+                0);
+
+        return calendar1.getTime();
+    }
+
     public void setUserid(String userid)
     {
         this.userid = userid;
@@ -253,4 +269,13 @@ public class Nap
     {
         return Integer.parseInt(this.duration)>0 && Integer.parseInt(this.duration)<24*60;
     }
+
+    public static Comparator<Nap> dateStartComparator = new Comparator<Nap>()
+    {
+        @Override
+        public int compare(Nap nap1, Nap nap2)
+        {
+            return nap2.getStartDate().compareTo( nap1.getStartDate() );
+        }
+    };
 }

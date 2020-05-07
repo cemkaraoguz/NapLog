@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ShowActivity extends AppCompatActivity implements DailyNapAdapter.ItemClicked
 {
@@ -118,6 +119,9 @@ public class ShowActivity extends AppCompatActivity implements DailyNapAdapter.I
     public ArrayList<DailyNap> mergeNapsToDailyNaps(ArrayList<Nap> list_nap)
     {
         ArrayList<DailyNap> list_dailyNap = new ArrayList<>();
+
+        // TODO : sort naps here
+        Collections.sort(list_nap, Nap.dateStartComparator);
 
         String date = "";
         for(int i=0; i<list_nap.size(); i++)
